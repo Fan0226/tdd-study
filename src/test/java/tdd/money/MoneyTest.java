@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import tdd.money.Dollar;
 
+// testコメント
 public class MoneyTest {
     @Test
     public void testMultiplication(){
@@ -15,3 +16,5 @@ public class MoneyTest {
         assertEquals(10, five.amount);
     }
 }
+
+
