@@ -8,6 +8,7 @@ import org.junit.Test;
 import tdd.money.Dollar;
 
 // testコメント
+// test comment 3
 public class MoneyTest {
     @Test
     public void testMultiplication(){
