@@ -1,10 +1,14 @@
 // package tdd.example;
 package tdd.money;
 
-public class Dollar {
-    int amount = 10;
-    Dollar(int amount){
+class Dollar {
+    int amount;
+
+    Dollar(int amount) {
+        this.amount = amount;
     }
-    void times(int multiplier){
+
+    Dollar times(int multiplier) {
+        return new Dollar(amount * multiplier);
     }
 }
