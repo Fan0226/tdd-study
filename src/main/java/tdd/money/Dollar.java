@@ -1,8 +1,8 @@
-package tdd.money;
+// package tdd.money;
 
-class Dollar extends Money {
+// class Dollar extends Money {
 
-    Dollar(int amount, String currency) {
-        super(amount, currency);
-    }
-}
+// Dollar(int amount, String currency) {
+// super(amount, currency);
+// }
+// }

@@ -1,9 +1,9 @@
-package tdd.money;
+// package tdd.money;
 
-public class Franc extends Money {
+// public class Franc extends Money {
 
-    Franc(int amount, String currency) {
-        super(amount, currency);
-    }
+// Franc(int amount, String currency) {
+// super(amount, currency);
+// }
 
-}
+// }
