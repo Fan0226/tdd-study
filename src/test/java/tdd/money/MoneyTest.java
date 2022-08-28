@@ -18,8 +18,6 @@ public class MoneyTest {
     public void testEquality() {
         assertTrue(Money.dollar(5).equals(Money.dollar(5)));
         assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-        // assertTrue(Money.franc(5).equals(Money.franc(5)));
-        // assertFalse(Money.franc(5).equals(Money.franc(6)));
         assertFalse(Money.franc(5).equals(Money.dollar(5)));
     }
 
@@ -34,7 +32,6 @@ public class MoneyTest {
         Money five = Money.dollar(5);
         Expression sum = five.plus(five);
         Bank bank = new Bank();
-        // Money sum = Money.dollar(5).plus(Money.dollar(5));
         Money reduced = bank.reduce(sum, "USD");
         assertEquals(Money.dollar(10), reduced);
     }
@@ -72,7 +69,7 @@ public class MoneyTest {
     }
 
     @Test
-    public void testIndentityRate() {
+    public void testIdentityRate() {
         assertEquals(1, new Bank().rate("USD", "USD"));
     }
 
@@ -86,9 +83,26 @@ public class MoneyTest {
         assertEquals(Money.dollar(10), result);
     }
 
+    @Test
+    public void testSumPlusMoney() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+        Money result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(15), result);
+    }
 
-    // @Test
-    // public void testArrayEquals() {
-    // assert equals(new Object[] {"abc"}.equals(new Object[] {"abc"}));
-    // }
+
+    @Test
+    public void testSumTimes() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
+        Money result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(20), result);
+    }
 }
