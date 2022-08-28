@@ -1,0 +1,420 @@
+
+@startuml Chapter1
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter1
+
+class Dollar {
+    ~amount : int
+    ~times() : void
+}
+@enduml
+
+@startuml Chapter2
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter2
+
+class Dollar {
+    ~amount : int
+    ~times() : Dollar
+}
+@enduml
+
+@startuml Chapter3
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter3
+
+class Dollar {
+    ~amount : int
+    ~times() : Dollar
+    +equals() : boolean
+}
+@enduml
+
+@startuml Chapter4
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter4
+
+class Dollar {
+    -amount : int
+    ~times() : Dollar
+    +equals() : boolean
+}
+@enduml
+
+@startuml Chapter5
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter5
+
+class Dollar {
+    -amount : int
+    ~times() : Dollar
+    +equals() : boolean
+}
+
+class Franc {
+    -amount : int
+    ~times() : Franc
+    +equals() : boolean
+}
+@enduml
+
+@startuml Chapter6,7
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter6,7
+
+package Money{
+    class Money {
+        #amount : int
+        +equals() : boolean
+    }
+
+    class Dollar {
+        ~times() : Dollar
+    }
+
+    class Franc {
+        ~times() : Franc
+    }
+
+    Money <|-- Dollar
+    Money <|-- Franc
+}
+
+@enduml
+
+@startuml Chapter8
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter8
+
+package Money{
+    class Money {
+        #amount : int
+        {abstract} times() :Money
+        +equals() : boolean
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Dollar {
+        ~times() : Money
+    }
+
+    class Franc {
+        ~times() : Money
+    }
+
+    Money <|-- Dollar
+    Money <|-- Franc
+}
+
+@enduml
+
+
+@startuml Chapter9
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter9
+
+package Money{
+    abstract class Money {
+        #amount : int
+        #currency : String
+        {abstract} times() : Money
+        +equals() : boolean
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Dollar {
+        ~times() : Money
+    }
+
+    class Franc {
+        ~times() : Money
+    }
+
+    Money <|-- Dollar
+    Money <|-- Franc
+}
+
+@enduml
+
+@startuml Chapter10
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter10
+
+package Money{
+    class Money {
+        #amount : int
+        #currency : String
+        ~times() : Money
+        ~currency() : String
+        +equals() : boolean
+        +toString() : String
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Dollar {
+    }
+
+    class Franc {
+    }
+
+    Money <|-- Dollar
+    Money <|-- Franc
+}
+
+@enduml
+
+
+@startuml Chapter11
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter11
+
+package Money{
+    class Money {
+        #amount : int
+        #currency : String
+        ~times() : Money
+        ~currency() : String
+        +equals() : boolean
+        +toString() : String
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+}
+
+@enduml
+
+@startuml Chapter12
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter12
+
+package Money{
+    class Money {
+        #amount : int
+        #currency : String
+        ~times() : Money
+        ~plus(): Expression
+        ~currency() : String
+        +equals() : boolean
+        +toString() : String
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Bank {
+        ~reduce() : Money
+    }
+
+    Interface Expression {
+    }
+
+    Expression <|.. Money
+}
+
+@enduml
+
+@startuml Chapter13
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter13
+
+package Money{
+    class Money {
+        #amount : int
+        #currency : String
+        ~times() : Money
+        ~plus(): Expression
+        +reduce() : Money
+        ~currency() : String
+        +equals() : boolean
+        +toString() : String
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Sum{
+        ~augend : Money
+        ~addend : Money
+        +reduce(): Money
+    }
+
+    class Bank {
+        ~reduce() : Money
+    }
+
+    Interface Expression {
+        ~reduce() : Money
+    }
+
+    Expression <|.. Money
+    Expression <|.. Sum
+}
+
+@enduml
+
+@startuml Chapter14
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter14
+
+package Money{
+    class Money {
+        #amount : int
+        #currency : String
+        ~times() : Money
+        ~plus(): Expression
+        +reduce() : Money
+        ~currency() : String
+        +equals() : boolean
+        +toString() : String
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Sum{
+        ~augend : Money
+        ~addend : Money
+        +reduce(): Money
+    }
+
+    class Bank {
+        -rate : Map<Pair,Inreger>
+        ~reduce() : Money
+        ~addRate() : void
+        ~rate() : int
+    }
+
+    class Pair{
+        -from : String
+        -to : String
+        +equals() : boolean
+        +hashCode() : int
+    }
+
+    Interface Expression {
+        ~reduce() : Money
+    }
+
+    Expression <|.. Money
+    Expression <|.. Sum
+}
+
+@enduml
+
+@startuml Chapter15
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter15
+
+package Money{
+    class Money {
+        #amount : int
+        #currency : String
+        ~times() : Expression
+        +plus(): Expression
+        +reduce() : Money
+        ~currency() : String
+        +equals() : boolean
+        +toString() : String
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Sum{
+        ~augend : Expression
+        ~addend : Expression
+        +plus() : Expression
+        +reduce(): Money
+    }
+
+    class Bank {
+        -rate : Map<Pair,Inreger>
+        ~reduce() : Money
+        ~addRate() : void
+        ~rate() : int
+    }
+
+    class Pair{
+        -from : String
+        -to : String
+        +equals() : boolean
+        +hashCode() : int
+    }
+
+    Interface Expression {
+        ~plus() : Expression
+        ~reduce() : Money
+    }
+
+    Expression <|.. Money
+    Expression <|.. Sum
+}
+
+@enduml
+
+
+@startuml Chapter16
+' 可視性の記号化OFF
+skinparam ClassAttributeIconSize 0  
+title Chapter16
+
+package Money{
+    class Money {
+        #amount : int
+        #currency : String
+        +times() : Expression
+        +plus(): Expression
+        +reduce() : Money
+        ~currency() : String
+        +equals() : boolean
+        +toString() : String
+        {static} dollar() : Money
+        {static} franc() : Money
+    }
+
+    class Sum{
+        ~augend : Expression
+        ~addend : Expression
+        +times() : Expression
+        +plus() : Expression
+        +reduce(): Money
+    }
+
+    class Bank {
+        -rate : Map<Pair,Inreger>
+        ~reduce() : Money
+        ~addRate() : void
+        ~rate() : int
+    }
+
+    class Pair{
+        -from : String
+        -to : String
+        +equals() : boolean
+        +hashCode() : int
+    }
+
+    Interface Expression {
+        ~times() : Expression
+        ~plus() : Expression
+        ~reduce() : Money
+    }
+
+    Expression <|.. Money
+    Expression <|.. Sum
+}
+
+@enduml
